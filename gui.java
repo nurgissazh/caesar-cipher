@@ -155,12 +155,10 @@ public class gui extends JFrame implements ActionListener {
 		}
 		
 	}
-	static String readFile(String path, Charset encoding) 
-			  throws IOException 
-			{
-			  byte[] encoded = Files.readAllBytes(Paths.get(path));
-			  return encoding.decode(ByteBuffer.wrap(encoded)).toString();
-			}
+	static String readFile(String path, Charset encoding)throws IOException{
+		byte[] encoded = Files.readAllBytes(Paths.get(path));
+		return encoding.decode(ByteBuffer.wrap(encoded)).toString();
+	}
 	public static void main(String[] args){
 		gui maingui = new gui();
         Object[] options = { "OK"};
