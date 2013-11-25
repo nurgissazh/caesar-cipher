@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -40,7 +41,7 @@ public class gui extends JFrame implements ActionListener {
 	JFileChooser fc = new JFileChooser();
 	private JButton decrypt = new JButton("Decrypt Text");
 	private JButton encrypt = new JButton("Encrypt text");
-	private JButton read = new JButton("Save");
+	private JButton save = new JButton("Save");
 	private JButton load = new JButton("Load");
 	private JButton rules = new JButton("Rules");
 	JScrollPane sp = new JScrollPane(write);
@@ -55,12 +56,12 @@ public class gui extends JFrame implements ActionListener {
 	    getContentPane().setLayout(new BorderLayout());
 	    encrypt.addActionListener(this);
 	    decrypt.addActionListener(this);
-	    read.addActionListener(this);
+	    save.addActionListener(this);
 	    load.addActionListener(this);
 	    rules.addActionListener(this);
 	    controls.add(encrypt);
 	    controls.add(decrypt);
-	    controls.add(read);
+	    controls.add(save);
 	    controls.add(load);
 	    
 	    JScrollPane scrollPane = new JScrollPane(canvas);
@@ -139,6 +140,18 @@ public class gui extends JFrame implements ActionListener {
                 canvas.setText(loaded);
             }
 			
+		}
+		else if(e.getSource() == save){
+			JFileChooser chooser = new JFileChooser();
+		    chooser.setCurrentDirectory(new File(""));
+		    int retrival = chooser.showSaveDialog(null);
+		    if (retrival == JFileChooser.APPROVE_OPTION) {
+		        try(FileWriter fw = new FileWriter(chooser.getSelectedFile())) {
+		            fw.write(canvas.getText());
+		        } catch (Exception ex) {
+		            ex.printStackTrace();
+		        }
+		    }
 		}
 		
 	}
