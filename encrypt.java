@@ -152,6 +152,18 @@ public class encrypt {
 		return usedAlphabet1;
 	}
 
+	/*
+	 * Currently developing the algorithms for the RSA public key encryption
+	 */
+	public String RSA_Public_Encryption(){
+		
+		return "";
+	}
+	public String RSA_Private_Encryption(){
+		
+		return "";
+	}
+
 	public static void main(String[] args){
 	}
 }
